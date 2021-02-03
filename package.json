@@ -1,0 +1,30 @@
+{
+  "name": "meguizo_starter",
+  "version": "1.0.0",
+  "description": "MEAN STACK with ANGULAR ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmeguizo/meguizo_starter.git"
+  },
+  "keywords": [
+    "MEAN",
+    "STACK",
+    "ANGULAR",
+    "APPLICATION"
+  ],
+  "author": "mark oliver meguizo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmeguizo/meguizo_starter/issues"
+  },
+  "homepage": "https://github.com/mmeguizo/meguizo_starter#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.14"
+  }
+}
