@@ -25,6 +25,7 @@
   "homepage": "https://github.com/mmeguizo/meguizo_starter#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.11.14"
+    "mongoose": "^5.11.14",
+    "rxjs": "^6.6.3"
   }
 }
