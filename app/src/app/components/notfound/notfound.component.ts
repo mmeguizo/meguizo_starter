@@ -8,7 +8,7 @@ import { take } from 'rxjs/operators';
     <h2>
       404 - Page not found
     </h2>
-    <p *ngIf="path">You might want to go to the <a [routerLink]="path">"{{ path }}" page</a></p>
+    <p *ngIf="path">You might want to go to the <a [routerLink]="path">{{ path | titlecase }} page</a></p>
   `,
   styles: []
 })
@@ -18,6 +18,9 @@ export class NotfoundComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    console.log(this.path);
+
     this.route.data.pipe(take(1))
       .subscribe((data: { path: string }) => {
         this.path = data.path;

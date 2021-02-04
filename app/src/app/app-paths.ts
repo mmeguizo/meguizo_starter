@@ -1,3 +1,5 @@
 export const paths = {
-  home: '',
+  home: 'home',
+  dashboard: 'dashboard',
+  register: 'register'
 };

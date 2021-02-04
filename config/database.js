@@ -1,18 +1,5 @@
 
-// module.exports = {
-
-
-//     database: 'mongodb://localhost:27017/meguizo_starter',
-
-//     options: {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     }
-
-// }\
-
-//const crypto = require('crypto').crypto.randomBytes(256).toString('hex');
-
+require('dotenv').config()
 const crypto = require('crypto');
 crypto.randomBytes(256, (err, buf) => {
     if (err) throw err;
@@ -20,11 +7,14 @@ crypto.randomBytes(256, (err, buf) => {
 });
 
 module.exports = {
-    uri: 'mongodb://localhost:27017/' + this.db,
+    //uri: 'mongodb://localhost:27017/' + this.db,
+    uri: process.env.DB_HOST,
     secret: crypto,
     options: {
         useUnifiedTopology: true,
         useNewUrlParser: true
     },
-    db: 'meguizo_starter'
+    // db: 'meguizo_starter'
+    // db: process.env.DB_HOST,
+    database_name: process.env.DB_NAME,
 }

@@ -8,6 +8,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { PathResolveService } from './path-resolve.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -16,7 +18,9 @@ import { PathResolveService } from './path-resolve.service';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    DashboardComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
