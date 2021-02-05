@@ -4,8 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { PathResolveService } from './path-resolve.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { RegisterComponent } from './components/register/register.component';
 import { paths } from './app-paths';
+import { RegisterComponent } from './components/register/register.component';
 
 
 const routes: Routes = [
@@ -25,7 +25,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [],
   bootstrap: []
@@ -39,5 +39,6 @@ export class AppRoutingModule { }
     path: paths.home,
     component: HomeComponent
   },
+   imports: [RouterModule.forRoot(routes, { useHash: true })],
 
 */

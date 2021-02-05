@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express');
+var cors = require('cors')
 const app = express();
 const router = express.Router();
 const config = require('./config/database');
@@ -7,6 +8,10 @@ const mongoose = require('mongoose');
 const PORT = 3000;
 const path = require('path');
 const authentication = require('./routes/authentication')(router);
+
+
+
+
 
 mongoose.Promise = global.Promise;
 mongoose.set('useNewUrlParser', true);
@@ -21,10 +26,21 @@ mongoose.connect(config.uri, config.options, (err) => {
     }
 });
 
+
+//once live change it to the server side ip
+app.use(cors({
+
+    origin: 'http://localhost:4200'
+
+}))
+
 //body-parser built in express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+// will allow all link || not good
+//app.use(cors())
 
 //for development mode
 app.use(express.static(__dirname + '/app/dist/app'));
