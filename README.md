@@ -1,45 +1,59 @@
-usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           <command> [<args>]
+## MEAN Stack APP with Angular 11 by MArk Oliver Meguizo
 
-These are common Git commands used in various situations:
+This is an application demonstrating the basic components needed for a Single Page Application using MongoDB, ExpressJS, Angular 2, and NodeJS.
 
-start a working area (see also: git help tutorial)
-   clone             Clone a repository into a new directory
-   init              Create an empty Git repository or reinitialize an existing one
 
-work on the current change (see also: git help everyday)
-   add               Add file contents to the index
-   mv                Move or rename a file, a directory, or a symlink
-   restore           Restore working tree files
-   rm                Remove files from the working tree and from the index
-   sparse-checkout   Initialize and modify the sparse-checkout
+## Requirements
 
-examine the history and state (see also: git help revisions)
-   bisect            Use binary search to find the commit that introduced a bug
-   diff              Show changes between commits, commit and working tree, etc
-   grep              Print lines matching a pattern
-   log               Show commit logs
-   show              Show various types of objects
-   status            Show the working tree status
+- NodeJS
+- MongoDB
+- @angular/cli
 
-grow, mark and tweak your common history
-   branch            List, create, or delete branches
-   commit            Record changes to the repository
-   merge             Join two or more development histories together
-   rebase            Reapply commits on top of another base tip
-   reset             Reset current HEAD to the specified state
-   switch            Switch branches
-   tag               Create, list, delete or verify a tag object signed with GPG
+## Description
 
-collaborate (see also: git help workflows)
-   fetch             Download objects and refs from another repository
-   pull              Fetch from and integrate with another repository or a local branch
-   push              Update remote refs along with associated objects
+This applications demonstrates how to setup a RESTful API using NodeJS with Angular 2 Frontend. The application features a blog feed, where users can post comments, like posts, dislike posts, and create/edit/delete their own blog posts.
 
-'git help -a' and 'git help -g' list available subcommands and some
-concept guides. See 'git help <command>' or 'git help <concept>'
-to read about a specific subcommand or concept.
-See 'git help git' for an overview of the system.
+## Installation
+
+- Install all dependencies in package.json file. This can be done by navigating to the root directory in the command line interface and running the following command:
+```
+$ npm install
+```
+
+- Next, install all of the Angular 2 development dependencies in package.json file:
+```
+$ cd client/
+$ npm install
+```
+
+- Installation is complete. Navigate to the root directory and then:  
+
+## Production
+-- In root directory:
+```
+$ npm run build
+$ npm start
+```
+-- Access production server at: http://localhost:3000
+
+## Development
+```
+$ cd client/
+$ ng serve
+```
+-- In another window, from root directory run:
+```
+$ npm start
+```
+-- Access development server at: http://localhost:4200
+
+-- Access API at: http://localhost:3000
+
+
+## Contributors
+Mark Oliver Meguizo
+
+
+## License
+
+No license.
