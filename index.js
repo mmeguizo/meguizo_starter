@@ -5,7 +5,6 @@ const app = express();
 const router = express.Router();
 const config = require('./config/database');
 const mongoose = require('mongoose');
-const PORT = 3000;
 const path = require('path');
 const authentication = require('./routes/authentication')(router);
 
@@ -54,6 +53,6 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log('Spying on port ' + PORT);
+app.listen(process.env.DB_PORT || 3000, () => {
+    console.log('Connected on port ' + process.env.DB_PORT || 3000);
 });
