@@ -53,6 +53,6 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(process.env.DB_PORT || 3000, () => {
-    console.log('Connected on port ' + process.env.DB_PORT || 3000);
+app.listen(process.env.DB_PORT || process.env.PORT || 3000, () => {
+    console.log('Connected on port ' + process.env.DB_PORT || process.env.PORT || 3000);
 });
