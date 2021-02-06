@@ -1,5 +1,6 @@
-const User = require('../models/user')
-
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const config = require('../config/database');
 
 module.exports = (router) => {
 
@@ -125,14 +126,13 @@ module.exports = (router) => {
             if (!user) {
               res.json({ success: false, message: 'User not found' })
             } else {
-
-              console.log({ UserFindones: user });
               //user found compare the password
               const validPassword = user.comparePassword(req.body.password);
               if (!validPassword) {
                 res.json({ success: false, message: 'Password is incorrect' })
               } else {
-                res.json({ success: true, message: 'Password is Correct' })
+                const token = jwt.sign({ userID: user._id }, config.secret, { expiresIn: '24h' });
+                res.json({ success: true, message: 'Password is Correct', token: token, user: { username: user.username } })
 
               }
             }

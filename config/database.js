@@ -1,15 +1,14 @@
 
 require('dotenv').config()
 const crypto = require('crypto');
-crypto.randomBytes(256, (err, buf) => {
-    if (err) throw err;
-    // console.log(`${buf.length} bytes of random data: ${buf.toString('hex')}`);
-});
+
+
+const hash = crypto.createHmac('sha256', 'MEGUIZO').update('meguizo_starter').digest('hex');
 
 module.exports = {
     //uri: 'mongodb://localhost:27017/' + this.db,
     uri: process.env.DB_HOST,
-    secret: crypto,
+    secret: hash,
     options: {
         useUnifiedTopology: true,
         useNewUrlParser: true

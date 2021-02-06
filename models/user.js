@@ -137,7 +137,7 @@ const userSchema = new Schema({
 
 /****************************************************************************** */
 
-// moduleuserSchema.pre('save', (next) => ****does not work with es6 syntax**** use functions
+// moduleuserSchema.pre('save', (next) => ****does not work with es6 syntax**** use functions old style
 //VALIDATORS SHOULD BE ABOVE THE SCHEMA
 userSchema.pre('save', function (next) {
 
@@ -158,8 +158,8 @@ userSchema.pre('save', function (next) {
 
 })
 
-
-userSchema.methods.comparePassword = (password) => {
+// (password) => ****does not work with es6 syntax**** use functions old ways
+userSchema.methods.comparePassword = function (password) {
 
     return bcrypt.compare(password, this.password); // this return a promise
     //async 

@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
         // After 2 seconds, redirect to dashboard page
         setTimeout(() => {
           this.router.navigate(['/dashboard']); // Navigate to dashboard view
-        }, 2000);
+        }, 1000);
       }
     });
   }
