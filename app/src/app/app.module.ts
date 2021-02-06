@@ -41,13 +41,6 @@ export function tokenGetter() {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-    }), // ToastrModule added
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -55,6 +48,14 @@ export function tokenGetter() {
         // disallowedRoutes: ["http://localhost:3000/authentication/login"],
       },
     }),
+    ReactiveFormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }), // ToastrModule added
+
 
 
   ],
