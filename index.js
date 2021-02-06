@@ -27,11 +27,12 @@ mongoose.connect(config.uri, config.options, (err) => {
 
 
 //once live change it to the server side ip
-app.use(cors({
+app.use(cors())
+// app.use(cors({
 
-    origin: 'http://localhost:4200'
+//     origin: 'http://localhost:4200'
 
-}))
+// }))
 
 //body-parser built in express middleware
 app.use(express.urlencoded({ extended: true }));

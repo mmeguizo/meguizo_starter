@@ -59,26 +59,27 @@ export class AuthService {
   }
 
   registerUser(user) {
-    return this.http.post(this.domain + '/authentication/register', user)
-    // return this.http.post(this.domain + '/authentication/register', user).pipe(map((response: any) => response.json())); //error if map is not imported
+    return this.http.post('/authentication/register', user)
+    // return this.http.post(this.domain + '/authentication/register', user)
   }
 
 
   checkUsername(username) {
-    return this.http.get(this.domain + '/authentication/checkUsername/' + username);
-    // return this.http.post(this.domain + '/authentication/register', user).pipe(map((response: any) => response.json())); //error if map is not imported
+    return this.http.get('/authentication/checkUsername/' + username);
+    // return this.http.get(this.domain + '/authentication/checkUsername/' + username);
   }
 
 
 
   checkEmail(email) {
-    return this.http.get(this.domain + '/authentication/checkEmail/' + email)
-    // return this.http.post(this.domain + '/authentication/register', user).pipe(map((response: any) => response.json())); //error if map is not imported
+    return this.http.get('/authentication/checkEmail/' + email)
+    // return this.http.get(this.domain + '/authentication/checkEmail/' + email)
   }
 
   // Function to login user
   login(user) {
     return this.http.post(this.domain + '/authentication/login', user)
+    // return this.http.post(this.domain + '/authentication/login', user)
   }
 
   logout() {
@@ -114,7 +115,8 @@ export class AuthService {
     //this.options => is not working but with {headers : this.options} is working i read it i guess in angular docs
     //'@auth0/angular-jwt'; is adding 'Bearer ' in token so i removed it manually
     this.createAuthenticationHeaders()
-    return this.http.get(this.domain + '/authentication/profile', { headers: this.options })
+    return this.http.get('/authentication/profile', { headers: this.options })
+    // return this.http.get(this.domain + '/authentication/profile', { headers: this.options })
 
   }
 
