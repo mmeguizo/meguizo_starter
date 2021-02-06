@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const authentication = require('./routes/authentication')(router);
 
-
+const PORT = process.env.PORT || 3000;
 
 
 
@@ -53,6 +53,6 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(process.env.DB_PORT || process.env.PORT || 3000, () => {
-    console.log('Connected on port ' + process.env.DB_PORT || process.env.PORT || 3000);
+app.listen(PORT, () => {
+    console.log('Connected on port ' + PORT);
 });
