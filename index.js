@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const authentication = require('./routes/authentication')(router);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 
 
