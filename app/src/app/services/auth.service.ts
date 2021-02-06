@@ -5,7 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 //map is not working if not imported
 import { map } from "rxjs/operators";
-const PORT = require("../../../../index.js")
+
 
 
 
@@ -15,7 +15,7 @@ const PORT = require("../../../../index.js")
 export class AuthService {
 
   //public domain = "http://localhost:3000";
-  public domain = "cryptic-anchorage-20422.herokuapp.com:" + PORT;
+  //public domain = "cryptic-anchorage-20422.herokuapp.com:3000";
   authToken;
   user;
   options;

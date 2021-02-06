@@ -883,19 +883,17 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵdefineInjecto
             _app_routing_module__WEBPACK_IMPORTED_MODULE_1__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
+            _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_13__["JwtModule"].forRoot({
+                config: {
+                    tokenGetter: tokenGetter,
+                },
+            }),
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["BrowserAnimationsModule"],
             ngx_toastr__WEBPACK_IMPORTED_MODULE_14__["ToastrModule"].forRoot({
                 timeOut: 3000,
                 positionClass: 'toast-bottom-right',
                 preventDuplicates: true,
-            }),
-            _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_13__["JwtModule"].forRoot({
-                config: {
-                    tokenGetter: tokenGetter,
-                    allowedDomains: ['localhost:3000'],
-                    disallowedRoutes: ["http://localhost:3000/authentication/login"],
-                },
             }),
         ]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
@@ -908,9 +906,8 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵdefineInjecto
         _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _app_routing_module__WEBPACK_IMPORTED_MODULE_1__["AppRoutingModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-        _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
-        _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["BrowserAnimationsModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_14__["ToastrModule"], _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_13__["JwtModule"]] }); })();
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"], _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_13__["JwtModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
+        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["BrowserAnimationsModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_14__["ToastrModule"]] }); })();
 
 
 /***/ }),
@@ -1163,7 +1160,6 @@ class AuthService {
     constructor(http, jwtHelper) {
         this.http = http;
         this.jwtHelper = jwtHelper;
-        this.domain = "http://localhost:3000";
     }
     handleError(error) {
         let errorMessage = 'Unknown error!';
@@ -1190,20 +1186,21 @@ class AuthService {
         this.authToken = token;
     }
     registerUser(user) {
-        return this.http.post(this.domain + '/authentication/register', user);
-        // return this.http.post(this.domain + '/authentication/register', user).pipe(map((response: any) => response.json())); //error if map is not imported
+        return this.http.post('/authentication/register', user);
+        // return this.http.post(this.domain + '/authentication/register', user)
     }
     checkUsername(username) {
-        return this.http.get(this.domain + '/authentication/checkUsername/' + username);
-        // return this.http.post(this.domain + '/authentication/register', user).pipe(map((response: any) => response.json())); //error if map is not imported
+        return this.http.get('/authentication/checkUsername/' + username);
+        // return this.http.get(this.domain + '/authentication/checkUsername/' + username);
     }
     checkEmail(email) {
-        return this.http.get(this.domain + '/authentication/checkEmail/' + email);
-        // return this.http.post(this.domain + '/authentication/register', user).pipe(map((response: any) => response.json())); //error if map is not imported
+        return this.http.get('/authentication/checkEmail/' + email);
+        // return this.http.get(this.domain + '/authentication/checkEmail/' + email)
     }
     // Function to login user
     login(user) {
-        return this.http.post(this.domain + '/authentication/login', user);
+        return this.http.post('/authentication/login', user);
+        // return this.http.post(this.domain + '/authentication/login', user)
     }
     logout() {
         this.authToken = null;
@@ -1228,7 +1225,8 @@ class AuthService {
         //this.options => is not working but with {headers : this.options} is working i read it i guess in angular docs
         //'@auth0/angular-jwt'; is adding 'Bearer ' in token so i removed it manually
         this.createAuthenticationHeaders();
-        return this.http.get(this.domain + '/authentication/profile', { headers: this.options });
+        return this.http.get('/authentication/profile', { headers: this.options });
+        // return this.http.get(this.domain + '/authentication/profile', { headers: this.options })
     }
 }
 AuthService.ɵfac = function AuthService_Factory(t) { return new (t || AuthService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_3__["JwtHelperService"])); };
