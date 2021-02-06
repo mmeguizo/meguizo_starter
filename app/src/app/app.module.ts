@@ -13,9 +13,17 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { JwtModule } from "@auth0/angular-jwt";
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +33,8 @@ import { LoginComponent } from './components/login/login.component';
     NotfoundComponent,
     DashboardComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +45,18 @@ import { LoginComponent } from './components/login/login.component';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:3000'],
+        disallowedRoutes: ["http://localhost:3000/authentication/login"],
+      },
+    }),
+
+
   ],
   exports: [
 
@@ -47,3 +65,4 @@ import { LoginComponent } from './components/login/login.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

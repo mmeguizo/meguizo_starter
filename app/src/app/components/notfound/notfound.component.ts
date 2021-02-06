@@ -19,8 +19,6 @@ export class NotfoundComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.path);
-
     this.route.data.pipe(take(1))
       .subscribe((data: { path: string }) => {
         this.path = data.path;

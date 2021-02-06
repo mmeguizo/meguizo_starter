@@ -132,7 +132,7 @@ module.exports = (router) => {
                 res.json({ success: false, message: 'Password is incorrect' })
               } else {
                 const token = jwt.sign({ userID: user._id }, config.secret, { expiresIn: '24h' });
-                res.json({ success: true, message: 'Password is Correct', token: token, user: { username: user.username } })
+                res.json({ success: true, message: 'Password is Correct', token: token, user: { username: user.username }, userToken: user.username })
 
               }
             }
@@ -145,14 +145,65 @@ module.exports = (router) => {
     }
   });
 
+
+  // any route that needs authorization or token should be under it if not above this middleware 
+
+
+  router.use((req, res, next) => {
+
+    //'@auth0/angular-jwt' automatically adds token in the headers but it also add the world 'Bearer ' so i manually format it 
+    //i slice the word 'Bearer '  = 7
+    let token = (req.headers['authorization']).slice(7);
+
+    if (!token) {
+      res.json({ success: false, message: 'No token provided' })
+
+    } else {
+      //decrypt token
+      jwt.verify(token, config.secret, (err, decoded) => {
+
+        if (err) {
+          //expire or invalid
+          res.json({ success: false, message: 'Token invalid :' + err })
+
+        } else {
+          //assign token to headers
+          req.decoded = decoded
+          //to break to this functions if not it will just loop
+          next();
+        }
+
+      })
+    }
+  })
+
+
+  router.get('/profile', (req, res) => {
+
+
+    User.findOne({ _id: req.decoded.userID }).select('username email').exec((err, user) => {
+
+
+      if (err) {
+        res.json({ success: false, message: err.message })
+      } else {
+        if (!user) {
+          res.json({ success: false, message: 'User not found' })
+        } else {
+          res.json({ success: true, data: user })
+        }
+      }
+
+    })
+
+  });
+
+
+
   router.put('/register', (req, res) => {
     res.send('PUT in authetication')
   });
 
-
-  router.get('/register', (req, res) => {
-    res.send('GET in authetication')
-  });
 
 
 

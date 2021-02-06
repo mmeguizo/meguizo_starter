@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
 
     // Function to send login data to API
     this.authService.login(user).subscribe((data: any) => {
+
       // Check if response was a success or error
       if (!data.success) {
         // this.messageClass = 'alert alert-danger'; // Set bootstrap error class
@@ -69,10 +70,10 @@ export class LoginComponent implements OnInit {
         // this.message = data.message; // Set success message
         this.toastr.success('Success', data.message);
         // Function to store user's token in client local storage
-        this.authService.storeUserData(data.token, data.user);
+        this.authService.storeUserData(data.token, data.user, data.userToken);
         // After 2 seconds, redirect to dashboard page
         setTimeout(() => {
-          this.router.navigate(['/dashboard']); // Navigate to dashboard view
+          this.router.navigate(['/profile']); // Navigate to dashboard view
         }, 1000);
       }
     });

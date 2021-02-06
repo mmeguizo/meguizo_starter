@@ -1,13 +1,15 @@
 <div class="jumbotron text-center">
   <h1>MEAN APP</h1>
   <p class="lead">STARTER APP by <strong>Mark Meguizo</strong></p>
-  <div class="btn-group me-2" role="group">
-    <a class="btn btn-primary" routerLink="/register" role="button">Register</a>
-  </div>
-  <div class="btn-group me-2" role="group">
-    <a class="btn btn-success" routerLink="/login" role="button">Login</a>
-  </div>
 
+  <ng-container *ngIf="auth.loggedOut()">
+    <div class="btn-group me-2" role="group">
+      <a class="btn btn-primary" routerLink="/register" role="button">Register</a>
+    </div>
+    <div class="btn-group me-2" role="group">
+      <a class="btn btn-success" routerLink="/login" role="button">Login</a>
+    </div>
+  </ng-container>
 </div>
 <br>
 <div class="row">

@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { paths } from './app-paths';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: paths.login, component: LoginComponent },
   { path: paths.dashboard, component: DashboardComponent },
   { path: paths.register, component: RegisterComponent },
+  { path: paths.profile, component: ProfileComponent },
   {
     path: '**',
     resolve: {

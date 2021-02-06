@@ -178,7 +178,9 @@ export class RegisterComponent implements OnInit {
 
         setTimeout(() => {
           //  this.router.navigateByUrl('/home');
-          this.router.navigateByUrl('home', { skipLocationChange: false });
+          //  this.router.navigateByUrl('login', { skipLocationChange: false });
+          //this.router.navigate['login']
+          this.router.navigateByUrl('login', { skipLocationChange: false });
         }, 2000)
       } else {
         this.toastr.error('Failed', res.message);
@@ -192,9 +194,6 @@ export class RegisterComponent implements OnInit {
 
 
   checkEmail() {
-
-    console.log(this.form.get('email').value);
-
 
     this.auth.checkEmail(this.form.get('email').value).subscribe((res: any) => {
 
