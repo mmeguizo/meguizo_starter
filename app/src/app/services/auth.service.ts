@@ -78,7 +78,7 @@ export class AuthService {
 
   // Function to login user
   login(user) {
-    return this.http.post(this.domain + '/authentication/login', user)
+    return this.http.post('/authentication/login', user)
     // return this.http.post(this.domain + '/authentication/login', user)
   }
 
