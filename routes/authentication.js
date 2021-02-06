@@ -105,7 +105,45 @@ module.exports = (router) => {
     }
   })
 
+  //login
+  router.post('/login', (req, res) => {
 
+    if (!req.body.username) {
+      res.json({ success: false, message: 'No Username was provided' })
+
+    } else {
+      if (!req.body.password) {
+        res.json({ success: false, message: 'No password was provided' })
+      } else {
+
+        User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
+
+          if (err) {
+            res.json({ success: false, message: err.message })
+
+          } else {
+            if (!user) {
+              res.json({ success: false, message: 'User not found' })
+            } else {
+
+              console.log({ UserFindones: user });
+              //user found compare the password
+              const validPassword = user.comparePassword(req.body.password);
+              if (!validPassword) {
+                res.json({ success: false, message: 'Password is incorrect' })
+              } else {
+                res.json({ success: true, message: 'Password is Correct' })
+
+              }
+            }
+
+          }
+        })
+
+      }
+
+    }
+  });
 
   router.put('/register', (req, res) => {
     res.send('PUT in authetication')
@@ -116,9 +154,6 @@ module.exports = (router) => {
     res.send('GET in authetication')
   });
 
-  router.post('/', (req, res) => {
-    res.send('No route post in authetication')
-  });
 
 
 

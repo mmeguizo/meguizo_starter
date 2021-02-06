@@ -13,7 +13,9 @@ import { map } from "rxjs/operators";
 export class AuthService {
 
   public domain = "http://localhost:3000";
-
+  authToken;
+  user;
+  options;
 
   constructor(
 
@@ -53,9 +55,20 @@ export class AuthService {
     // return this.http.post(this.domain + '/authentication/register', user).pipe(map((response: any) => response.json())); //error if map is not imported
   }
 
+  // Function to login user
+  login(user) {
+    return this.http.post(this.domain + '/authentication/login', user)
+  }
 
 
 
+  // Function to store user's data in client local storage
+  storeUserData(token, user) {
+    localStorage.setItem('token', token); // Set token in local storage
+    localStorage.setItem('user', JSON.stringify(user)); // Set user in local storage as string
+    this.authToken = token; // Assign token to be used elsewhere
+    this.user = user; // Set user to be used elsewhere
+  }
 
 }
 
