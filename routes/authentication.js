@@ -147,13 +147,15 @@ module.exports = (router) => {
 
 
   // any route that needs authorization or token should be under it if not above this middleware 
-
-
   router.use((req, res, next) => {
 
     //'@auth0/angular-jwt' automatically adds token in the headers but it also add the world 'Bearer ' so i manually format it 
     //i slice the word 'Bearer '  = 7
-    let token = (req.headers['authorization']).slice(7);
+    let token = (req.headers['authorization']).substring(req.headers['authorization'].indexOf(" ") + 1)
+    //let token = (req.headers['authorization']).slice(7);
+
+
+
 
     if (!token) {
       res.json({ success: false, message: 'No token provided' })
@@ -182,7 +184,6 @@ module.exports = (router) => {
 
 
     User.findOne({ _id: req.decoded.userID }).select('username email').exec((err, user) => {
-
 
       if (err) {
         res.json({ success: false, message: err.message })

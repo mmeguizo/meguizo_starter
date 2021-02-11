@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const authentication = require('./routes/authentication')(router);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 
 
@@ -29,9 +29,7 @@ mongoose.connect(config.uri, config.options, (err) => {
 //once live change it to the server side ip
 app.use(cors())
 // app.use(cors({
-
 //     origin: 'http://localhost:4200'
-
 // }))
 
 //body-parser built in express middleware

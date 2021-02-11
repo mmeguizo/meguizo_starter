@@ -14,7 +14,7 @@ import { map } from "rxjs/operators";
 })
 export class AuthService {
 
-  //public domain = "http://localhost:3000";
+  public domain = "http://localhost:3000";
   //public domain = "cryptic-anchorage-20422.herokuapp.com:3000";
   authToken;
   user;
@@ -61,7 +61,7 @@ export class AuthService {
 
   registerUser(user) {
     return this.http.post('/authentication/register', user)
-    // return this.http.post(this.domain + '/authentication/register', user)
+    //return this.http.post(this.domain + '/authentication/register', user)
   }
 
 
@@ -79,9 +79,6 @@ export class AuthService {
 
   // Function to login user
   login(user) {
-
-
-
     return this.http.post('/authentication/login', user)
     // return this.http.post(this.domain + '/authentication/login', user)
   }
@@ -93,10 +90,9 @@ export class AuthService {
 
   }
 
-  loggedOut() {
-
-    return this.jwtHelper.isTokenExpired()
-
+  CurrentlyloggedIn() {
+    const token = localStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token)
   }
 
 
@@ -120,7 +116,7 @@ export class AuthService {
     //'@auth0/angular-jwt'; is adding 'Bearer ' in token so i removed it manually
     this.createAuthenticationHeaders()
     return this.http.get('/authentication/profile', { headers: this.options })
-    // return this.http.get(this.domain + '/authentication/profile', { headers: this.options })
+    //  return this.http.get(this.domain + '/authentication/profile', { headers: this.options })
 
   }
 
@@ -135,20 +131,3 @@ export class AuthService {
 
 
 }
-
-
-
-
-/*
-
- this.http.get(url)
-      .subscribe((data: GithubUser) => {
-        // Data extraction from the HTTP response is already done
-        // Display the result
-        console.log('TJ user data', data);
-      });
-
-      .map(response => response.json())
-            .catch(error => Observable.throw("Error in x service"));
-
-*/

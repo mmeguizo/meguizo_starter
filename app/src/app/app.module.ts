@@ -17,6 +17,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './guard/auth.guard';
+import { NotAuthGuard } from './guard/notAuth.guard';
 
 
 export function tokenGetter() {
@@ -62,7 +64,7 @@ export function tokenGetter() {
   exports: [
 
   ],
-  providers: [PathResolveService, AuthService],
+  providers: [PathResolveService, AuthService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

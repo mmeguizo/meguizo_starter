@@ -8,14 +8,17 @@ import { paths } from './app-paths';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './guard/auth.guard';
+import { NotAuthGuard } from './guard/notAuth.guard';
+
 
 
 const routes: Routes = [
   { path: paths.home, component: HomeComponent },
-  { path: paths.login, component: LoginComponent },
-  { path: paths.dashboard, component: DashboardComponent },
-  { path: paths.register, component: RegisterComponent },
-  { path: paths.profile, component: ProfileComponent },
+  { path: paths.login, component: LoginComponent, canActivate: [NotAuthGuard] },
+  { path: paths.dashboard, component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: paths.register, component: RegisterComponent, canActivate: [NotAuthGuard] },
+  { path: paths.profile, component: ProfileComponent, canActivate: [AuthGuard] },
   {
     path: '**',
     resolve: {

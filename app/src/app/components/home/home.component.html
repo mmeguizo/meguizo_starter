@@ -2,7 +2,7 @@
   <h1>MEAN APP</h1>
   <p class="lead">STARTER APP by <strong>Mark Meguizo</strong></p>
 
-  <ng-container *ngIf="auth.loggedOut()">
+  <ng-container *ngIf="!auth.CurrentlyloggedIn()">
     <div class="btn-group me-2" role="group">
       <a class="btn btn-primary" routerLink="/register" role="button">Register</a>
     </div>
@@ -13,12 +13,10 @@
 </div>
 <br>
 <div class="row">
-
-
   <div class="col-sm-6 col-md-4 mb-3">
     <div class="card">
-      <img class="mx-auto d-block" src="https://image.flaticon.com/icons/svg/417/417745.svg" alt="placeholder image"
-        width="140" height="140">
+      <img class="mx-auto d-block" src="https://img.icons8.com/clouds/100/000000/search-database.png"
+        alt="placeholder image" width="140" height="140">
       <div class="card-body">
         <h3>MongoDB</h3>
         <p class="card-text">MongoDB is a free and open-source cross-platform document-oriented database program. This
@@ -29,7 +27,7 @@
   </div>
 
   <div class="col-sm-6 col-md-4 mb-3">
-    <div class=card> <img class="mx-auto d-block" src="https://image.flaticon.com/icons/svg/417/417746.svg"
+    <div class=card> <img class="mx-auto d-block" src="https://img.icons8.com/clouds/100/000000/e.png"
         alt="Generic placeholder image" width="140" height="140">
       <div class="card-body">
         <h3>ExpressJS</h3>
@@ -40,8 +38,9 @@
     </div>
   </div>
 
+
   <div class="col-sm-6 col-md-4 mb-3">
-    <div class=card> <img class="mx-auto d-block" src="https://image.flaticon.com/icons/svg/417/417751.svg"
+    <div class=card> <img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/angularjs.png"
         alt="Generic placeholder image" width="140" height="140">
       <div class="card-body">
         <h3>Angular 2</h3>
@@ -51,9 +50,8 @@
       </div>
     </div>
   </div>
-
   <div class="col-sm-6 col-md-4 mb-3">
-    <div class=card> <img class="mx-auto d-block" src="https://image.flaticon.com/icons/svg/417/417754.svg"
+    <div class=card> <img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/nodejs.png"
         alt="Generic placeholder image" width="140" height="140">
       <div class="card-body">
         <h3>NodeJS</h3>
