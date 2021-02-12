@@ -60,27 +60,26 @@ export class AuthService {
   }
 
   registerUser(user) {
-    // return this.http.post('/authentication/register', user)
-    return this.http.post(this.domain + '/authentication/register', user)
+    return this.http.post('/authentication/register', user)
+    // return this.http.post(this.domain + '/authentication/register', user)
   }
 
 
   checkUsername(username) {
-    // return this.http.get('/authentication/checkUsername/' + username);
-    return this.http.get(this.domain + '/authentication/checkUsername/' + username);
+    return this.http.get('/authentication/checkUsername/' + username);
+    //return this.http.get(this.domain + '/authentication/checkUsername/' + username);
   }
 
 
 
   checkEmail(email) {
-    //return this.http.get('/authentication/checkEmail/' + email)
-    return this.http.get(this.domain + '/authentication/checkEmail/' + email)
+    return this.http.get('/authentication/checkEmail/' + email)
+    // return this.http.get(this.domain + '/authentication/checkEmail/' + email)
   }
 
-  // Function to login user
   login(user) {
-    //  return this.http.post('/authentication/login', user)
-    return this.http.post(this.domain + '/authentication/login', user)
+    return this.http.post('/authentication/login', user)
+    // return this.http.post(this.domain + '/authentication/login', user)
   }
 
   logout() {
@@ -96,7 +95,7 @@ export class AuthService {
   }
 
 
-  // Function to store user's data in client local storage
+  // //Function to store user's data in client local storage
   storeUserData(token, user, tokenUsername) {
     localStorage.setItem('token', token); // Set token in local storage
     localStorage.setItem('tokenUsername', user.username); // Set token in local storage
@@ -115,14 +114,15 @@ export class AuthService {
     //this.options => is not working but with {headers : this.options} is working i read it i guess in angular docs
     //'@auth0/angular-jwt'; is adding 'Bearer ' in token so i removed it manually
     this.createAuthenticationHeaders()
-    // return this.http.get('/authentication/profile', { headers: this.options })
-    return this.http.get(this.domain + '/authentication/profile', { headers: this.options })
+    return this.http.get('/authentication/profile', { headers: this.options })
+    //  return this.http.get(this.domain + '/authentication/profile', { headers: this.options })
 
   }
 
   getPublicProfile(username) {
-    this.createAuthenticationHeaders(); // Create headers before sending to API
-    return this.http.get(this.domain + 'authentication/publicProfile/' + username, { headers: this.options });
+    this.createAuthenticationHeaders(); // //Create headers before sending to API
+    return this.http.get('/authentication/publicProfile/' + username, { headers: this.options });
+    //  return this.http.get(this.domain + 'authentication/publicProfile/' + username, { headers: this.options });
   }
 
 
