@@ -120,6 +120,11 @@ export class AuthService {
 
   }
 
+  getPublicProfile(username) {
+    this.createAuthenticationHeaders(); // Create headers before sending to API
+    return this.http.get(this.domain + 'authentication/publicProfile/' + username, { headers: this.options });
+  }
+
 
 
 

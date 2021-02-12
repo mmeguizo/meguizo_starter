@@ -40,7 +40,9 @@
           class="form-control" autocomplete="off" placeholder="*Email" formControlName="email" (blur)="checkEmail()" />
 
         <ul class="help-block">
-          <li [ngClass]="{ 'text-success' : emailValid, 'text-danger' : !emailValid }" *ngIf="emailMessage">
+          <li
+            [ngClass]="{ 'text-success' : emailValid && !form.controls.email.errors?.validateEmail, 'text-danger' : !emailValid }"
+            *ngIf="emailMessage && !form.controls.email.errors?.validateEmail">
             {{emailMessage}}</li>
           <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
           <li
@@ -88,7 +90,7 @@
       <input type="submit" class="btn btn-danger clearBtn" (click)="handleClear()" value="Clear" />
       <!--   <input [disabled]="!form.valid" type="submit" class="btn btn-primary" value="Submit" /> -->
       <input type="submit" [disabled]="!form.valid || processing || !emailValid || !usernameValid"
-        class="btn btn-primary" value="Submit" />
+        class="btn bg-light text-dark" value="Submit" />
 
     </div>
   </form>

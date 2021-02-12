@@ -19,7 +19,10 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guard/auth.guard';
 import { NotAuthGuard } from './guard/notAuth.guard';
-
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogService } from './services/blog.service';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -36,7 +39,9 @@ export function tokenGetter() {
     DashboardComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    BlogComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,15 +62,17 @@ export function tokenGetter() {
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
-
+    ModalModule.forRoot(),
 
 
   ],
   exports: [
 
   ],
-  providers: [PathResolveService, AuthService, AuthGuard, NotAuthGuard],
+  providers: [PathResolveService, AuthService, AuthGuard, NotAuthGuard, BlogService, BsModalService, ConfirmModalComponent, BsModalRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
+// ....
+// imports: [ModalModule.forRoot()],

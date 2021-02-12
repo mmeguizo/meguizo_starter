@@ -1,0 +1,134 @@
+<h1 class="page-header">Blog Feed</h1>
+
+<button type="button" name="button" class="btn btn-warning" *ngIf="!newPost" (click)="newBlogForm()">New
+  Post</button>&nbsp;&nbsp;
+<button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-info" *ngIf="!newPost"
+  (click)="reloadBlogs()">
+  <span [ngClass]="{ 'spinner-border spinner-border-sm' : loadingBlogs }" role="status"></span>
+  <i *ngIf="!loadingBlogs" class="fa fa-refresh" aria-hidden="true"></i>
+  Reload
+</button>
+<br>
+<br>
+
+
+<!-- New Blog Form -->
+<form [formGroup]="form" name="blogForm" (submit)="onBlogSubmit()" *ngIf="newPost">
+  <!-- Title Input -->
+  <div class="form-group">
+    <label for="title">Title</label>
+    <div
+      [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
+      <!-- Title Input -->
+      <input type="text" name="title" class="form-control" placeholder="*Blog Title" autocomplete="off"
+        formControlName="title" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
+        <li
+          *ngIf="(form.controls.title.dirty && form.controls.title.errors?.minlength) || (form.controls.title.dirty && form.controls.title.errors?.maxlength)">
+          Max length: 50, Min length: 5</li>
+        <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.alphaNumericValidation">Must be a letter or
+          number</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Body Input -->
+  <div class="form-group">
+    <label for="body">Body</label>
+    <div
+      [ngClass]="{'has-success': form.controls.body.valid, 'has-error': form.controls.body.dirty && form.controls.body.errors}">
+      <!-- Body Input -->
+      <textarea name="body" rows="8" cols="80" placeholder="*Body" class="form-control"
+        formControlName="body"></textarea>
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required">This field is required.</li>
+        <li
+          *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength) || (form.controls.body.dirty && form.controls.body.errors?.maxlength)">
+          Max length: 500, Min length: 5</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Go Back Button -->
+  <button [disabled]="processing" type="button" name="button" (click)="goBack()" class="btn btn-warning">Go
+    Back</button>
+  <!-- Submit Button -->
+  <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
+
+</form>
+<!-- New Blog Form -->
+
+
+<div *ngIf="!newPost">
+  <div class="card">
+    <div class="card-heading">
+      <h3 class="card-title px-3">Post Title</h3>
+    </div>
+    <div class="card-body">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam iure minus id fugit hic, voluptatibus possimus
+      excepturi quo architecto quas ipsam beatae eligendi dicta molestias placeat cum est repellat debitis.
+      Reiciendis odio exercitationem corporis et, debitis totam esse sapiente minus dicta dignissimos rem id tenetur
+      voluptatem est nesciunt quis, repudiandae nemo dolor, rerum ullam labore ducimus? Quo explicabo odio sed!
+      Provident minus molestias sunt veniam, dolores, tempore nesciunt eius, excepturi magni blanditiis dicta quos nam
+      eaque ratione hic architecto obcaecati possimus dolore. Blanditiis sapiente quis rerum totam asperiores odio? Ex!
+      Magni, ab. Vitae tempore provident minus id mollitia non labore repudiandae commodi saepe libero, corrupti
+      similique rerum hic omnis ratione. Iste impedit sit amet temporibus nesciunt perspiciatis minima quos aut?
+      Totam labore officia temporibus illum suscipit, cumque modi tempore laudantium ipsam repellat quis consectetur
+      cupiditate sed aliquid aut! Quasi voluptatum nesciunt incidunt saepe ea quos nostrum labore itaque quibusdam
+      aperiam.
+    </div>
+    <div class="card-footer">
+      <strong>Posted By: </strong> testerme
+      <br>
+      <strong>Date: </strong> feb 20 2021
+      <br>
+      <div>
+        <strong>Likes: </strong> 25
+        <br>
+        <strong>Dislikes: </strong> 22
+      </div>
+      <a href="#"><button type="button" class="btn btn-sm btn-info">Edit</button></a>
+      <a href="#"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+
+      <!-- dislike dropdown -->
+
+      <div class="dropdown">
+        <button type="button" class="btn btn-sm btn-warning">
+          <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span> Likes : 21
+        </button>
+        <div class="dropdown-content">
+          <a href="#">josh</a>
+          <a href="#">cris</a>
+          <a href="#">tope</a>
+        </div>
+      </div>
+      <!-- likes dropdown -->
+      <div class="dropdown">
+        <button type="button" class="btn btn-sm btn-success">
+          <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span> Likes : 21
+        </button>
+        <div class="dropdown-content">
+          <a href="#">josh</a>
+          <a href="#">cris</a>
+          <a href="#">tope</a>
+        </div>
+      </div>
+    </div>
+    <!-- end footer -->
+    <ul class="list-group">
+      <li class="list-group-item">
+        <button type="button" class="bt btn-sm btn-danger" (click)="draftComment()"> Post Comment</button>
+        <br>
+        <!-- <form>
+          <textarea name="comment" rows="10" cols="30" class="form-control"></textarea>
+          <button type="button" class="btn btn-sm btn-info">Submit Post</button>
+          <button type="button" class="btn btn-sm btn-danger">Cancel</button>
+        </form> -->
+      </li>
+    </ul>
+
+  </div>
+</div>

@@ -1,14 +1,16 @@
 require('dotenv').config()
 const express = require('express');
-var cors = require('cors')
+const cors = require('cors')
 const app = express();
 const router = express.Router();
 const config = require('./config/database');
 const mongoose = require('mongoose');
-const path = require('path');
-const authentication = require('./routes/authentication')(router);
-
 const PORT = process.env.PORT || 3000;
+const path = require('path');
+
+//there is order here if you put blogs above authentication it will not require a token
+const authentication = require('./routes/authentication')(router);
+const blogs = require('./routes/blogs')(router);
 
 
 
@@ -42,8 +44,8 @@ app.use(express.json());
 
 //for development mode
 app.use(express.static(__dirname + '/app/dist/app'));
-
 app.use('/authentication', authentication);
+app.use('/blogs', blogs);
 
 
 app.get('*', (req, res) => {
